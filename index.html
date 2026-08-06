@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>かんたん家計簿</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <main class="app">
+            <header class="app-header">
+                <div>
+                    <h1>かんたん家計簿</h1>
+                    <p class="description">無駄遣いを減らしましょう</p>
+                </div> 
+            </header>
+
+            <section class="summary-grid" aria-label="集計">
+                <article class="summary-card income-card">
+                    <p>収入</p>
+                    <strong id="incomeTotal">¥0</strong>
+                </article>
+
+                <article class="summary-card expense-card">
+                    <p>支出</p>
+                    <strong id="expenseTotal">¥0</strong>
+                </article>
+
+                <article class="summary-card balance-card">
+                    <p>残高</p>
+                    <strong id="balanceTotal">¥0</strong>
+                </article>
+            </section>
+
+                <section class="panel">
+                    <div class="section-heading">
+                        <div>
+                            <p class="section-label">ADD RECORD</p>
+                            <h2 id="formTitle">支出を登録する</h2>
+                        </div>
+                    </div>
+
+                    <form id="recordForm" class="record-form">
+                        <div class="form-field">
+                            <label for="recordDate">日付</label>
+                            <input type="date" id="recordDate" required>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="recordType">種類</label>
+                            <select id="recordType" required>
+                                <option value="expense">支出</option>
+                                <option value="income">収入</option>
+                            </select>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="recordCategory">カテゴリー</label>
+                            <select id="recordCategory" required></select>
+                        </div>
+
+                        <div class="form-field">
+                            <label for="recordAmount">金額</label>
+                            <input
+                                type="number"
+                                id="recordAmount"
+                                min="1"
+                                step="1"
+                                placeholder="例：1200"
+                                required
+                            >
+                        </div>
+
+                        <div  class="form-field form-field-wide">
+                            <label for="recordMemo">メモ</label>
+                            <input
+                                type="text"
+                                id="recordMemo"
+                                maxlength="40"
+                                placeholder="例：スーパーで食材を購入"
+                                required
+                            >
+                        </div>
+
+                        <div class="form-actions form-field-wide">
+                            <button type="submit" id="submitButton" class="primary-button">
+                                登録
+                            </button>
+
+                            <button
+                                type="button"
+                                id="cancelEditButton"
+                                class="secondary-button hidden"
+                            >
+                            編集をやめる
+                            </button>
+                        </div>
+                    </form>
+
+                    <p id="formMessage" class="form-message" aria-live="polite"></p>
+                </section>
+
+                <section class="panel">
+                    <div class="list-header">
+                        <p class="section-label">RECORDS</p>
+                        <h2>収支一覧</h2>
+                    </div>
+
+                    <div class="filters">
+                        <div class="filter-field">
+                            <label for="monthFilter">月</label>
+                            <input type="month" id="monthFilter">
+                        </div>
+
+                        <div class="filter-field">
+                            <label for="typeFilter">種類</label>
+                            <select id="typeFilter">
+                                <option value="all">すべて</option>
+                                <option value="expense">支出のみ</option>
+                                <option value="income">収入のみ</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="table-wrapper">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th>日付</th>
+                                    <th>種類</th>
+                                    <th>カテゴリー</th>
+                                    <th>メモ</th>
+                                    <th class="amount-colum">金額</th>
+                                    <th class="action-colum">操作</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recordTableBody"></tbody>
+                        </table>
+
+                        <div id="emptyMessage" class="empty-message hidden">
+                            表示するデータがありません
+                        </div>
+                    </div>
+            </section>
+        </main>
+    <script src="script.js"></script>
+</body>
+</html>

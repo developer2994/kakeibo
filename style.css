@@ -1,0 +1,170 @@
+/* すべての要素と、疑似要素の幅・高さにpaddingとborderを含める */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+/* アプリ全体の設定 */
+.app {
+    width: min(1120px, 92%);
+    margin: 0 auto;
+    padding: 48px 0 64px;
+}
+
+/* タイトルとサブタイトル */
+.app-header {
+    margin-bottom: 28px;
+}
+
+/* タイトルのみの設定 */
+h1 {
+    margin-bottom: 10px;
+    font-size: clamp(32px, 5vw, 48px); /* clamp(最小値, 基本値, 最大値) */
+    line-height: 1.15;
+}
+
+/* 収入支出残高のカード全体の並び方 */
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 横に並べる。repeat(何回する返すか、幅)*/
+    gap: 18px;
+    margin-bottom: 24px;
+}
+
+/* カード一枚ずつの設定 */
+.summary-card {
+    padding: 22px;
+    background: #ffffff;
+    border: 1px solid #e2e8f2;
+    border-radius: 20px;
+    box-shadow: 0 14px 35px rgba(50, 70, 110, 0.08);
+}
+
+/* サマリーカードの漢字部分 */
+.summary-card p {
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 700;
+}
+
+/* サマリーカードの値段の部分 */
+.summary-card strong {
+    font-size: clamp(25px, 4vw, 34px); /* clamp(最小値, 基本の値, 最大値) */
+}
+
+/* カードの中の文字の色 */
+.income-card strong {
+    color: #087f5b;
+}
+
+.expense-card strong {
+    color: #d9485f;
+}
+
+.balance-card strong {
+    color: #315fbd;
+}
+
+/* 入力フォームの全体の並び方 */
+.record-form {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 18px;
+}
+
+/* ラベルと入力欄を縦に並べる */
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* メモ欄とボタンを横幅(grid分)いっぱいにする */
+.form-field-wide {
+    grid-column: 1 / -1;
+}
+
+/* 入力欄を装飾する */
+input,
+select {
+    width: 100%;
+    min-height: 46px;
+    padding: 10px 12px;
+    border: 1px solid #cfd8e8;
+    border-radius: 10px;
+    outline: none;
+}
+
+/* inputとselect欄をクリックしたときのボックスの見た目 */
+input:focus,
+select:focus {
+    border-color: #4d79d8;
+    box-shadow: 0 0 0 4px rgba(77, 121, 216, 0.13);
+}
+
+/* ボタンの共通の形を作る */
+.primary-button,
+.secondary-button,
+.action-button {
+    border: 0;
+    border-radius: 10px;
+    font-weight: 800;
+}
+
+/* 各ボタンごとの色と大きさ設定する */
+.primary-button {
+    min-height: 46px;
+    padding: 10px 20px;
+    color: #ffffff;
+    background: #315fbd;
+}
+
+.secondary-button {
+    min-height: 46px;
+    padding: 10px 20px;
+    color: #315fbd;
+    background: #eaf0ff;
+}
+
+/* マウスオーバーしたとき */
+.primary-button:hover {
+    background: #254c9b;
+}
+
+/* テーブルの設定 */
+table {
+    width: 100%;
+    border-collapse: collapse; /* セル同士の線を一本にする */
+}
+
+th,
+td {
+    padding: 15px 12px; /* 上下、左右*/
+    border-bottom: 1px solid #e7ecf4;
+    text-align: left;
+}
+
+.record-amount,
+.amount-colum {
+    text-align: right;
+}
+
+.hidden {
+    display: none;
+}
+
+@media (max-width: 560px) {
+    .summary-grid, 
+    .record-form {
+        grid-template-columns: 1fr;
+    }
+}
+
+
+
+
+
+
+
+
